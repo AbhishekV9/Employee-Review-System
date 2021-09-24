@@ -6,6 +6,7 @@ const userController=require('../controller/userController');
 router.get('/login',userController.logIn);
 router.get('/signup',userController.signUp);
 router.post('/createuser',userController.createUser);
+router.get('/sign-out',userController.signout);
 
 
 router.post('/create-session',passport.authenticate(

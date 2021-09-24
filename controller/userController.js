@@ -53,3 +53,9 @@ module.exports.createUser=async function(req,res){
     }
     
 }
+
+module.exports.signout=function(req,res){
+    req.logout();
+    console.log("logout");
+    return res.redirect("/");
+}
