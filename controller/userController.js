@@ -1,11 +1,36 @@
 const User = require("../models/user");
+const Review=require('../models/review');
 
 
-module.exports.home=function(req,res){
+module.exports.home=async function(req,res){
     if(!req.user){
        return res.redirect('users/login')
     }
-    return res.render('home');
+    let user=await User.findById(req.user._id);
+    let recipients=[];
+    for(let i=0 ;i<user.for.length;i++){
+        let temp= await User.findById(user.for[i]);
+        recipients.push(temp);
+    }
+    
+    let review = await Review.find({
+        for: req.user._id,
+      });
+    
+    let recived=[];
+    for(let i=0;i<review.length;i++){
+        let temp= await User.findById(review.from[i]);
+        let temp2={
+            name:temp.name,
+            review:review[i].review,
+            updatedAt:review[i].updatedAt
+        };
+        recived.push(temp2);
+    }
+    return res.render('home',{
+        recipients,
+        recived
+    })
 }
 
 module.exports.logIn=function(req,res){

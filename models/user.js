@@ -20,13 +20,13 @@ const employeeSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    for: [
+    for: [   //people to whom i have to review
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
       },
     ],
-    from: [
+    from: [ //reviews recived from other peoples
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Review",
