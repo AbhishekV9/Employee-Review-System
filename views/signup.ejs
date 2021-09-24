@@ -9,22 +9,22 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/users/createUser" method="POST">
+    <form action="/users/createuser" method="POST">
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">User name</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="userName">
           </div>
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1">
+          <input type="password" class="form-control" id="exampleInputPassword1" name="password">
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
+            <input type="password" class="form-control" id="exampleInputPassword1" name="confirmPassword">
           </div>
         <button type="submit" class="btn btn-primary">Sign UP</button>
       </form>
