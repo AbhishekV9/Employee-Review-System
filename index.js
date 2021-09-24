@@ -12,7 +12,7 @@ const MongoStore =require('connect-mongo');
 
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/assets", express.static("./assets"));
+app.use(express.static('./assets'));
 
 
 app.set("view engine", "ejs");
