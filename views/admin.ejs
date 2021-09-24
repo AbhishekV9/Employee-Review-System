@@ -18,27 +18,27 @@
         </div> -->
         <div>
             <h1>Assign Work To Employees</h1>
-           <form action="/admin/employee-task">
+           <form method="POST" action="/admin/employee-task">
                 <div>
                     <h4>Recipients</h4>
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" aria-label="Default select example" name="recipient">
                         <option selected disabled>Select Recipients</option>
                         <% for(u of users){ %>
-                           <option value="<%= u._id %>"><%= u.name %></option>                          
+                           <option value="<%= u.id %>"><%= u.name %></option>                          
                         <% } %>
                     </select>
                 </div>
 
                 <div>
                     <h4> Reviewer</h4>
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected disabled>Select Recipients</option>
+                    <select class="form-select" aria-label="Default select example" name="reviewer">
+                        <option selected disabled>Select Reviewer</option>
                         <% for(u of users){ %>
-                           <option value="<%= u._id %>"><%= u.name %></option>                          
+                           <option value="<%= u.id %>"><%= u.name %></option>                          
                         <% } %>
                     </select>
                 </div>
-                <button type="button" class="btn btn-dark">Assign</button>
+                <button type="submit" class="btn btn-dark">Assign</button>
            </form>
 
         </div>

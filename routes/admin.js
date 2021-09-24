@@ -6,4 +6,6 @@ const adminController=require('../controller/adminController');
 
 router.get('/assignworks',adminController.admin);
 
+router.post('/employee-task',adminController.assignWork);
+
 module.exports=router;
