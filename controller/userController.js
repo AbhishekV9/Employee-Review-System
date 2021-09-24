@@ -3,26 +3,26 @@ const User = require("../models/user");
 
 module.exports.home=function(req,res){
     if(!req.user){
-        res.redirect('users/login')
+       return res.redirect('users/login')
     }
-    res.rendor('home');
+    return res.render('home');
 }
 
-module.exports.signIn=function(req,res){
-    if(req.isAuthenticated()){
-        console.log("already signed in");
-        res.redirect('/');
+module.exports.logIn=function(req,res){
+    if(!req.isAuthenticated()){
+        return res.render('login');
     }
-    res.render('login');
+    console.log("already signed in 10");
+    return res.redirect('/');
 }
 
 module.exports.createSession=function(req,res){
     console.log("signIn sucessfull");
-    res.redirect('/')
+    return res.redirect('/')
 }
 
 module.exports.signUp=function(req,res){
-    res.render('signup')
+    return res.render('signup')
 }
 
 module.exports.createUser=async function(req,res){
@@ -30,11 +30,11 @@ module.exports.createUser=async function(req,res){
     const user=await User.findOne({email:email});
     if(user){
         console.log("user is already present");
-        res.redirect('/users/login');
+        return res.redirect('/users/login');
     }else{
         if(password !== confirmPassword){
             console.log("password mismatch");
-            res.redirect('/users/signup');
+            return res.redirect('/users/signup');
         }else{
             const new_user= await User.create({
                 name:userName,
@@ -46,9 +46,9 @@ module.exports.createUser=async function(req,res){
             console.log("user_created",new_user);
             if(!new_user){
                 console.log("error in creating new user");
-                res.redirect('/users/signup')
+                return res.redirect('/users/signup')
             }
-            res.redirect('/users/login')
+            return res.redirect('/users/login')
         }
     }
     
