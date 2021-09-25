@@ -1,4 +1,5 @@
 const User=require('../models/user');
+const review=require('../models/review');
 
 module.exports.admin=async function(req,res){
     try {
@@ -63,6 +64,7 @@ module.exports.allEmplyees= async function(req,res){
 }
 
 module.exports.deleteEmployee= async function(req,res){
+   try {
     if(!req.isAuthenticated){
         return res.redirect('/');
     }
@@ -72,7 +74,41 @@ module.exports.deleteEmployee= async function(req,res){
     }
      
     let id=req.params.id;
+    const users=await User.find({});
+    for(let i=0;i<users.length;i++){
+       let index=await users[i].from.indexOf(id);
+       if(index!==-1){
+           while(index!=-1){
+                await users[i].from.splice(index,1);
+                index= await users[i].from.indexOf(id);
+           }
+           await users[i].save();
+       }
+       index=await users[i].for.indexOf(id);
+       if(index!==-1){
+           while(index!=-1){
+                await users[i].for.splice(index,1);
+                index= await users[i].for.indexOf(id);
+           }
+           await users[i].save();
+       }
+    }
+    let reviews=await review.find({from:id});
+    for(let i=0;i<reviews.length;i++){
+        await review.findByIdAndDelete(reviews[i].id);
+    }
+
+    reviews=await review.find({for:id});
+    for(let i=0;i<reviews.length;i++){
+        await review.findByIdAndDelete(reviews[i].id);
+    }
+
+    await User.findByIdAndDelete(id);
 
     return res.redirect('/admin/view_employees');
+
+   } catch (error) {
+       console.log(error);
+   }
 
 }
