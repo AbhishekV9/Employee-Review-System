@@ -43,7 +43,16 @@
 
         </div>
         <div>
-
+            <h4> Make Admin</h4>
+            <form method="POST" action="/admin/make_admin">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Make Admin</option>
+                    <% for(u of users){ %>
+                        <option value="<%= u.id %>"><%= u.name %></option>                          
+                     <% } %>
+                </select>
+                <button type="submit" class="btn btn-dark">Make Admin</button>
+            </form>
         </div>
 
     </div>
