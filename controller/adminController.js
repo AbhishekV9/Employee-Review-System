@@ -32,7 +32,7 @@ module.exports.assignWork= async function (req,res){
 
        let recipient= await User.findById(req.body.recipient);
        let reviewer= await User.findById(req.body.reviewer);
-       if(recipient == reviewer){
+       if(req.body.recipient === req.body.reviewer){
            return res.redirect('back');
        }
        recipient.from.push(reviewer);
@@ -72,7 +72,7 @@ module.exports.deleteEmployee= async function(req,res){
     }
      
     let id=req.params.id;
-    
+
     return res.redirect('/admin/view_employees');
 
 }

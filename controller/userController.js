@@ -13,7 +13,6 @@ module.exports.home=async function(req,res){
          let temp= await User.findById(user.for[i]);
          recipients.push(temp);
      }
-     console.log(recipients);
      let review = await Review.find({
          for: req.user._id,
        });
@@ -73,7 +72,7 @@ module.exports.createUser=async function(req,res){
                 name:userName,
                 email,
                 password,
-                isAdmin:true
+                isAdmin:false
             });
             await new_user.save();
             console.log("user_created",new_user);
