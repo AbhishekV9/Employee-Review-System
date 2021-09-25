@@ -15,8 +15,9 @@ module.exports.createReview= async function(req,res){
         from:reviewer,
         for:recipient
     })
-    // console.log("user",req.user);
-    // console.log("recipient",recipient);
+    const index=req.user.for.indexOf(req.params.id);
+    req.user.for.splice(index,1);
+    req.user.save();
     return res.redirect('/');
       
   } catch (error) {

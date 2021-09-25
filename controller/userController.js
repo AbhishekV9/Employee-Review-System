@@ -13,33 +13,31 @@ module.exports.home=async function(req,res){
          let temp= await User.findById(user.for[i]);
          recipients.push(temp);
      }
-     
+     console.log(recipients);
      let review = await Review.find({
          for: req.user._id,
        });
-     //  console.log("userid",req.user._id);
-     //   console.log("review",review);
-    //    console.log(review.length);
+
      let recieved=[];
      for(let i=0;i<review.length;i++){
          let temp= await User.findById(review[i].from);
-         //console.log("temp1",temp);
+         
          let temp2={
              name:temp.name,
              review:review[i].review,
              updatedAt:review[i].updatedAt
          };
-      //   console.log('temp2',temp2);
+      
          recieved.push(temp2);
      }
-    // console.log('recived',recived);
-    //console.log('recipient',recipients);
+    
      return res.render('home',{
          recipients,
          recieved
      });
   } catch (error) {
       console.log(error)
+      return res.redirect('/')
   }
 }
 
