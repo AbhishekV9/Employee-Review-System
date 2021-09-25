@@ -6,6 +6,9 @@ module.exports.admin=async function(req,res){
             console.log("you are not logged in");
             return res.redirect('/');
         }
+        if(req.user.isAdmin == false){
+            return res.redirect('/');
+        }
         let users=await User.find({});
         return res.render('admin',{
             users
@@ -22,6 +25,11 @@ module.exports.assignWork= async function (req,res){
            console.log('please login')
            return res.redirect('/')
        }
+
+       if(req.user.isAdmin == false){
+        return res.redirect('/');
+       }
+       
        let recipient= await User.findById(req.body.recipient);
        let reviewer= await User.findById(req.body.reviewer);
        if(recipient == reviewer){
