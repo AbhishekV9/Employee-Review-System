@@ -1,0 +1,21 @@
+.w-50{
+    width:35% !important;
+}
+
+.w-60{
+    width:70%;
+}
+
+.mt-6{
+    margin-top: 100px;
+}
+
+.center-alligned{
+    display: flex;
+    justify-content: center;
+}
+
+.td-n{
+    text-decoration: none;
+    font-weight: bold;
+}

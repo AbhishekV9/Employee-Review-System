@@ -18,10 +18,6 @@
     margin-top: 60px;
 }
 
-.m-n{
-    margin-top: -8px;
-}
-
 .right-alligned{
     display: flex;
     justify-content: end;
