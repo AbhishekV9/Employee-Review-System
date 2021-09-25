@@ -49,18 +49,23 @@ module.exports.assignWork= async function (req,res){
 }
 
 module.exports.allEmplyees= async function(req,res){
-    if(!req.isAuthenticated){
-        return res.redirect('/');
+    try {
+        if(!req.isAuthenticated){
+            return res.redirect('/');
+        }
+    
+        if(req.user.isAdmin == false){
+            return res.redirect('/');
+        }
+    
+        const users=await User.find({});
+        return res.render('employee',{
+            users
+        });
+    } catch (error) {
+        console.log("error",error);
+        return;
     }
-
-    if(req.user.isAdmin == false){
-        return res.redirect('/');
-    }
-
-    const users=await User.find({});
-    return res.render('employee',{
-        users
-    });
 }
 
 module.exports.deleteEmployee= async function(req,res){
@@ -109,6 +114,32 @@ module.exports.deleteEmployee= async function(req,res){
 
    } catch (error) {
        console.log(error);
+       return;
    }
 
+}
+
+module.exports.makeAdmin=async function(req,res){
+    try {
+        if(!req.isAuthenticated){
+            return res.redirect('/');
+        }
+    
+        if(req.user.isAdmin == false){
+            return res.redirect('/');
+        }
+        let user=await User.findById(req.body.admin);
+        
+        if(user.isAdmin==true){
+            return res.redirect('back');
+        }else{
+            user.isAdmin=true;
+            await user.save();
+        }
+
+        return res.redirect('back');
+    } catch (error) {
+        console.log(error)
+        return;
+    }
 }

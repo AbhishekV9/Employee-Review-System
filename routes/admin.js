@@ -12,4 +12,6 @@ router.get('/view_employees',adminController.allEmplyees);
 
 router.get('/delete_employee/:id',adminController.deleteEmployee);
 
+router.post('/make_admin',adminController.makeAdmin);
+
 module.exports=router;
