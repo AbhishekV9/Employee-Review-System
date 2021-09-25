@@ -10,4 +10,6 @@ router.post('/employee-task',adminController.assignWork);
 
 router.get('/view_employees',adminController.allEmplyees);
 
+router.get('/delete_employee/:id',adminController.deleteEmployee);
+
 module.exports=router;

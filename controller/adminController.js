@@ -29,7 +29,7 @@ module.exports.assignWork= async function (req,res){
        if(req.user.isAdmin == false){
         return res.redirect('/');
        }
-       
+
        let recipient= await User.findById(req.body.recipient);
        let reviewer= await User.findById(req.body.reviewer);
        if(recipient == reviewer){
@@ -51,8 +51,27 @@ module.exports.allEmplyees= async function(req,res){
     if(!req.isAuthenticated){
         return res.redirect('/');
     }
+
+    if(req.user.isAdmin == false){
+        return res.redirect('/');
+    }
+
     const users=await User.find({});
     return res.render('employee',{
         users
     });
+}
+
+module.exports.deleteEmployee= async function(req,res){
+    if(!req.isAuthenticated){
+        return res.redirect('/');
+    }
+
+    if(req.user.isAdmin == false){
+        return res.redirect('/');
+    }
+     
+    await User.findByIdAndDelete(req.params.id);
+    return res.redirect('/admin/view_employees');
+
 }
