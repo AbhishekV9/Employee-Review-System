@@ -71,7 +71,8 @@ module.exports.deleteEmployee= async function(req,res){
         return res.redirect('/');
     }
      
-    await User.findByIdAndDelete(req.params.id);
+    let id=req.params.id;
+    
     return res.redirect('/admin/view_employees');
 
 }

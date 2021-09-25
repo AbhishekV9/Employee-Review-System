@@ -3,34 +3,44 @@ const Review=require('../models/review');
 
 
 module.exports.home=async function(req,res){
+  try {
     if(!req.user){
-       return res.redirect('users/login')
-    }
-    let user=await User.findById(req.user._id);
-    let recipients=[];
-    for(let i=0 ;i<user.for.length;i++){
-        let temp= await User.findById(user.for[i]);
-        recipients.push(temp);
-    }
-    
-    let review = await Review.find({
-        for: req.user._id,
-      });
-    
-    let recived=[];
-    for(let i=0;i<review.length;i++){
-        let temp= await User.findById(review.from[i]);
-        let temp2={
-            name:temp.name,
-            review:review[i].review,
-            updatedAt:review[i].updatedAt
-        };
-        recived.push(temp2);
-    }
-    return res.render('home',{
-        recipients,
-        recived
-    })
+        return res.redirect('users/login')
+     }
+     let user=await User.findById(req.user._id);
+     let recipients=[];
+     for(let i=0 ;i<user.for.length;i++){
+         let temp= await User.findById(user.for[i]);
+         recipients.push(temp);
+     }
+     
+     let review = await Review.find({
+         for: req.user._id,
+       });
+     //  console.log("userid",req.user._id);
+     //   console.log("review",review);
+    //    console.log(review.length);
+     let recieved=[];
+     for(let i=0;i<review.length;i++){
+         let temp= await User.findById(review[i].from);
+         //console.log("temp1",temp);
+         let temp2={
+             name:temp.name,
+             review:review[i].review,
+             updatedAt:review[i].updatedAt
+         };
+      //   console.log('temp2',temp2);
+         recieved.push(temp2);
+     }
+    // console.log('recived',recived);
+    //console.log('recipient',recipients);
+     return res.render('home',{
+         recipients,
+         recieved
+     });
+  } catch (error) {
+      console.log(error)
+  }
 }
 
 module.exports.logIn=function(req,res){
@@ -65,7 +75,7 @@ module.exports.createUser=async function(req,res){
                 name:userName,
                 email,
                 password,
-                isAdmin:false
+                isAdmin:true
             });
             await new_user.save();
             console.log("user_created",new_user);
