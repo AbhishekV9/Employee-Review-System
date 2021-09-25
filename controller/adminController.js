@@ -38,3 +38,13 @@ module.exports.assignWork= async function (req,res){
        return;
    }
 }
+
+module.exports.allEmplyees= async function(req,res){
+    if(!req.isAuthenticated){
+        return res.redirect('/');
+    }
+    const users=await User.find({});
+    return res.render('employee',{
+        users
+    });
+}

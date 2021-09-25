@@ -8,4 +8,6 @@ router.get('/assignworks',adminController.admin);
 
 router.post('/employee-task',adminController.assignWork);
 
+router.get('/view_employees',adminController.allEmplyees);
+
 module.exports=router;
