@@ -30,7 +30,7 @@ app.use(session({
       },
       store:MongoStore.create(
           {
-              mongoUrl:'mongodb://localhost/employee_review_system',
+              mongoUrl:process.env.EmployeeReview_URI,
               collectionName:'sessions',
               mongooseConncetion: db,
               autoRemove: 'disabled'
