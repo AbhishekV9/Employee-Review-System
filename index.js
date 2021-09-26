@@ -32,7 +32,7 @@ app.use(session({
           {
               mongoUrl:process.env.EmployeeReview_URI,
               collectionName:'sessions',
-              mongooseConncetion: db,
+              mongooseConnection: db,
               autoRemove: 'disabled'
           },
          

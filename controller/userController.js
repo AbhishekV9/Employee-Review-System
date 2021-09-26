@@ -76,7 +76,7 @@ module.exports.createUser=async function(req,res){
                 name:userName,
                 email,
                 password,
-                isAdmin:true
+                isAdmin:false
             });
             await new_user.save();
             console.log("user_created",new_user);
