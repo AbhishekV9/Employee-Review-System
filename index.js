@@ -2,6 +2,7 @@ const express=require("express");
 
 const app =express();
 const port=process.env.PORT || 8000 ;
+const cors=require('cors');
 
 const db=require('./config/mongoose');
 const session=require('express-session'); 
@@ -11,6 +12,7 @@ const passportLocal=require('./config/passport-local-strategy');
 const MongoStore =require('connect-mongo');
 
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 app.use(express.static('./assets'));
 
