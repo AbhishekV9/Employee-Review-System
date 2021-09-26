@@ -50,11 +50,15 @@ module.exports.logIn=function(req,res){
 
 module.exports.createSession=function(req,res){
     console.log("signIn sucessfull");
-    return res.redirect('/')
+    return res.redirect('/');
 }
 
 module.exports.signUp=function(req,res){
-    return res.render('signup')
+    return res.render('signup');
+}
+
+module.exports.signInPage=function(req,res){
+    return res.render('login');
 }
 
 module.exports.createUser=async function(req,res){
