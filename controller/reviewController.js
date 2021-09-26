@@ -1,6 +1,7 @@
 const User=require('../models/user');
 const Review=require('../models/review');
 
+//creating a review from reviewer for recipient
 module.exports.createReview= async function(req,res){
   try {
     if(!req.isAuthenticated){

@@ -4,14 +4,19 @@ const router=express.Router();
 
 const adminController=require('../controller/adminController');
 
-router.get('/assignworks',adminController.admin);
+//assigning work route
+router.get('/assignworks',passport.checkAuthentication,adminController.admin);
 
-router.post('/employee-task',adminController.assignWork);
+//employee task route
+router.post('/employee-task',passport.checkAuthentication,adminController.assignWork);
 
-router.get('/view_employees',adminController.allEmplyees);
+//view all employees route
+router.get('/view_employees',passport.checkAuthentication,adminController.allEmplyees);
 
-router.get('/delete_employee/:id',adminController.deleteEmployee);
+//delete an employee route
+router.get('/delete_employee/:id',passport.checkAuthentication,adminController.deleteEmployee);
 
-router.post('/make_admin',adminController.makeAdmin);
+//making user as admin route
+router.post('/make_admin',passport.checkAuthentication,adminController.makeAdmin);
 
 module.exports=router;

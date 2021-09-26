@@ -4,6 +4,7 @@ const router=express.Router();
 
 const reviewController=require('../controller/reviewController');
 
-router.post('/create_review/:id',reviewController.createReview);
+//submiting review route
+router.post('/create_review/:id',passport.checkAuthentication,reviewController.createReview);
 
 module.exports=router;

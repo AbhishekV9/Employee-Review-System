@@ -2,6 +2,7 @@ const User = require("../models/user");
 const Review=require('../models/review');
 
 
+//home controller wich sends all the reviews and task assigned to a user who is signned in
 module.exports.home=async function(req,res){
   try {
     if(!req.user){
@@ -40,27 +41,32 @@ module.exports.home=async function(req,res){
   }
 }
 
+//login controller
 module.exports.logIn=function(req,res){
     if(!req.isAuthenticated()){
         return res.render('login');
     }
-    console.log("already signed in 10");
+    console.log("already signed in");
     return res.redirect('/');
 }
 
+//create-session controller
 module.exports.createSession=function(req,res){
     console.log("signIn sucessfull");
     return res.redirect('/');
 }
 
+//rendering sign up page
 module.exports.signUp=function(req,res){
     return res.render('signup');
 }
 
+//redering login page
 module.exports.signInPage=function(req,res){
     return res.render('login');
 }
 
+//creating a new user and user is created as an employee not an admin
 module.exports.createUser=async function(req,res){
     const {userName,email,password,confirmPassword}=req.body;
     const user=await User.findOne({email:email});
@@ -90,6 +96,7 @@ module.exports.createUser=async function(req,res){
     
 }
 
+//logging out the user 
 module.exports.signout=function(req,res){
     req.logout();
     console.log("logout");

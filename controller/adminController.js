@@ -1,6 +1,7 @@
 const User=require('../models/user');
 const review=require('../models/review');
 
+//rendering admin page with all the users so the admin can select and assign works to them
 module.exports.admin=async function(req,res){
     try {
         if(!req.isAuthenticated()){
@@ -20,6 +21,7 @@ module.exports.admin=async function(req,res){
     }
 }
 
+//assigning work to the users acording to the recipient and reviewer sended by the admin
 module.exports.assignWork= async function (req,res){
    try {
        if(!req.isAuthenticated){
@@ -48,6 +50,7 @@ module.exports.assignWork= async function (req,res){
    }
 }
 
+//rendering emoloyee page with all the users to show there information
 module.exports.allEmplyees= async function(req,res){
     try {
         if(!req.isAuthenticated){
@@ -68,6 +71,7 @@ module.exports.allEmplyees= async function(req,res){
     }
 }
 
+//delteing employee from everywhere
 module.exports.deleteEmployee= async function(req,res){
    try {
     if(!req.isAuthenticated){
@@ -119,6 +123,7 @@ module.exports.deleteEmployee= async function(req,res){
 
 }
 
+//making other users as admin too
 module.exports.makeAdmin=async function(req,res){
     try {
         if(!req.isAuthenticated){

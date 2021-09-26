@@ -3,6 +3,7 @@ const LocalStrategy=require('passport-local').Strategy;
 
 const User=require("../models/user");
 
+//ussing local strategy of passport for authentication
 passport.use(new LocalStrategy({
     usernameField:"email"
 },function(email,password,done){
@@ -18,11 +19,13 @@ passport.use(new LocalStrategy({
     });
 }));
 
+//serializing the user
 passport.serializeUser(function(user,done){
     done(null,user.id); 
 });
 
 
+//deserializing the user
 passport.deserializeUser(function(id,done){
     User.findById(id,function(err,user){
         if(err){
@@ -34,7 +37,7 @@ passport.deserializeUser(function(id,done){
     });
 });
 
-
+//checking authentication
 passport.checkAuthentication=function(req,res,next){  
     if(req.isAuthenticated()){
         return next();
