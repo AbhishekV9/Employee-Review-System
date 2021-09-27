@@ -33,10 +33,31 @@ An application that allows employees to submit feedback toward each other’s pe
   <li>An employee can register, only admin can make an employee an admin</li>
 </ul>
 
-### Screenshot: ######
+### Screenshots: ######
 </br>
+</br>
+<h2> Sign-Up Page </h2>
 </br>
 
+<img src="https://github.com/AbhishekV9/Employee-Review-System/blob/master/assets/screenshot/Sign-Up.png" />
+</br>
+
+<h2> Sign-In Page </h2>
+</br>
+<img src="https://github.com/AbhishekV9/Employee-Review-System/blob/master/assets/screenshot/SignIn.png" />
+</br>
+
+<h2> Admin Views </h2>
+</br>
+<img src="https://github.com/AbhishekV9/Employee-Review-System/blob/master/assets/screenshot/AdminView1.png" />
+</br>
+<img src="https://github.com/AbhishekV9/Employee-Review-System/blob/master/assets/screenshot/AdminView2.png" />
+</br>
+<img src="https://github.com/AbhishekV9/Employee-Review-System/blob/master/assets/screenshot/AdminView3.png" />
+</br>
+<h2> Employee Views </h2>
+</br>
+<img src="https://github.com/AbhishekV9/Employee-Review-System/blob/master/assets/screenshot/EmployeeView.png" />
 </br>
 </br>
 
