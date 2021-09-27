@@ -39,7 +39,7 @@ An application that allows employees to submit feedback toward each other’s pe
 <h2> Sign-Up Page </h2>
 </br>
 
-<img src="https://github.com/AbhishekV9/Employee-Review-System/blob/master/assets/screenshot/Sign-Up.png" />
+<img src="https://github.com/AbhishekV9/Employee-Review-System/blob/master/assets/screenshot/signup.png" />
 </br>
 
 <h2> Sign-In Page </h2>
